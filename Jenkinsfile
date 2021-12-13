@@ -19,6 +19,8 @@ pipeline {
       steps {
         container('python') {
           sh 'python --version'
+          sh 'pwd'
+          sh 'echo warhjao'
         }
       }
     }
