@@ -18,9 +18,11 @@ pipeline {
     stage('Check python version') {
       steps {
         container('python') {
-          sh 'python --version'
-          sh 'pwd'
-          sh 'echo warhjao'
+          sh """
+            python --version
+            pwd
+            echo warhjao
+          """
         }
       }
     }
