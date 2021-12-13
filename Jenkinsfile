@@ -21,7 +21,7 @@ pipeline {
           sh """
             python --version
             pwd
-            echo warhjao
+            docker image ls
           """
         }
       }
