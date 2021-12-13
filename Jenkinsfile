@@ -11,6 +11,12 @@ pipeline {
             command:
             - cat
             tty: true
+
+          - name: docker
+            image: docker:latest
+            command:
+            - cat
+            tty: true
         '''
     }
   }
@@ -21,6 +27,15 @@ pipeline {
           sh """
             python --version
             pwd
+          """
+        }
+      }
+    }
+
+    stage('Check docker images') {
+      steps {
+        container('docker') {
+          sh """
             docker image ls
           """
         }
