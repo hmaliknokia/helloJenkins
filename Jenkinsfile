@@ -7,7 +7,7 @@ pipeline {
         spec:
           containers:
           - name: python
-            image: python
+            image: python:latest
             command:
             - cat
             tty: true
@@ -17,8 +17,8 @@ pipeline {
   stages {
     stage('Check python version') {
       steps {
-        container('maven') {
-          sh 'mvn -version'
+        container('python') {
+          python --version
         }
       }
     }
