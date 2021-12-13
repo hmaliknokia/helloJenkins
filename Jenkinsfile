@@ -1,10 +1,26 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: python
+            image: python
+            command:
+            - cat
+            tty: true
+        '''
     }
+  }
+  stages {
+    stage('Check python version') {
+      steps {
+        container('maven') {
+          sh 'mvn -version'
+        }
+      }
+    }
+  }
 }
